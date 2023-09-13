@@ -44,6 +44,14 @@ describe("test size: ", ()=> {
         const queue = createQueue()
         queue.enqueue(5)
         expect(queue.size()).toBe(1)
+        queue.dequeue()
+        expect(queue.size()).toBe(0)
+        // expect((queue.dequeue()).toBeNull)
+        queue.dequeue()
+        queue.dequeue()
+
+        queue.clear()
+        expect(queue.size()).toBe(0)
     })
 
     test("11 entries", ()=>{
