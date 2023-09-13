@@ -14,17 +14,17 @@ import static org.junit.Assert.*;
 
 
 /**
- * TODO: Write more unit tests to test the implementation of ArrayIntQueue
+ * TODO: Write more unit tests to test the implementation of mQueue
  * for the {@link LinkedIntQueue} and
- * {@link ArrayIntQueue} classes, as described in the handout. The
- * {@link ArrayIntQueue} class contains a few bugs. Use the tests you wrote for
- * the {@link LinkedIntQueue} class to test the {@link ArrayIntQueue}
+ * {@link mQueue} classes, as described in the handout. The
+ * {@link mQueue} class contains a few bugs. Use the tests you wrote for
+ * the {@link LinkedIntQueue} class to test the {@link mQueue}
  *
  * @author Alex Lockwood, George Guo
  */
 public class IntQueueTest {
 
-    private IntQueue mQueue;
+    private ArrayIntQueue mQueue;
     private List<Integer> testList;
 
     /**
@@ -33,8 +33,8 @@ public class IntQueueTest {
     @Before
     public void setUp() {
         // comment/uncomment these lines to test each class
-        mQueue = new LinkedIntQueue();
-//        mQueue = new ArrayIntQueue();
+        // mQueue = new LinkedIntQueue();
+       mQueue = new ArrayIntQueue();
 
         testList = new ArrayList<>(List.of(1, 2, 3));
     }
@@ -68,7 +68,9 @@ public class IntQueueTest {
             mQueue.enqueue(testList.get(i));
             assertEquals(testList.get(0), mQueue.peek());
             assertEquals(i + 1, mQueue.size());
+
         }
+     
     }
 
     @Test
@@ -98,6 +100,17 @@ public class IntQueueTest {
                 assertEquals(mQueue.dequeue(), result);
             }
         }
+    }
+
+    @Test
+    public void testensureCapacity() {
+        mQueue = new ArrayIntQueue();
+        for (int i = 0; i < 200; i++) {
+           mQueue.enqueue(1);
+        }
+        assertEquals(200, mQueue.size());
+
+
     }
 
 
